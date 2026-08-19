@@ -1,0 +1,5 @@
+cubes-Baseplate: 6
+cubes-bigCubeBlue: 2
+cubes-CubeGreen: 4
+cubes-CubeOrange: 4
+general-cornerMarker: 1

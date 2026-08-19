@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File abstract_robot.h &mdash; hrc-experiments 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> hrc-experiments
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pilot_study.html">Pilot Study</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hrc-experiments</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Program Listing for File abstract_robot.h</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/program_listing_file_src_abstract_robot.h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-abstract-robot-h">
+<span id="program-listing-file-src-abstract-robot-h"></span><h1>Program Listing for File abstract_robot.h<a class="headerlink" href="#program-listing-for-file-abstract-robot-h" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_src_abstract_robot.h.html#file-src-abstract-robot-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src\abstract_robot.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Geometry&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vision.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;camera_realsense.h&quot;</span><span class="cp"></span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">benchmark</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span> <span class="nc">abstract_robot</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">pick</span><span class="p">(</span><span class="n">Entity</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="k">final</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">place</span><span class="p">(</span><span class="n">Entity</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="k">final</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">benchmark</span><span class="o">::</span><span class="n">Entity</span><span class="o">&gt;</span><span class="w"> </span><span class="n">explore</span><span class="p">()</span><span class="w"> </span><span class="k">final</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">move_without_object_down_or_up</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">move_with_object_down</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="w"> </span><span class="o">&amp;</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">Entity</span><span class="o">::</span><span class="n">kind</span><span class="w"> </span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">exploration_poses</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">move_to_exploration_pose</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">open_gripper</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">::</span><span class="n">kind</span><span class="w"> </span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close_gripper</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">::</span><span class="n">kind</span><span class="w"> </span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="w"> </span><span class="nf">tcp_T_entity</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="o">&amp;</span><span class="n">entitiy</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// transformation from camera coordinates to world coordinates.</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="w"> </span><span class="nf">world_T_camera</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">Detection</span><span class="w"> </span><span class="n">detection_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Detection</span><span class="p">(</span><span class="s">&quot;./data/thresholds.realsense.json&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">hardware</span><span class="o">::</span><span class="n">camera_realsense</span><span class="w"> </span><span class="n">camera_</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">transfer_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="p">}</span><span class="c1">// namespace benchmark</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jonathan Huemmer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

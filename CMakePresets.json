@@ -1,21 +1,17 @@
 {
   "version": 3,
   "configurePresets": [
-
-    // windows specific configurations
     {
-      "name": "x64-release",
-      "displayName": "x64 Release",
-      "description": "Target Windows (64-bit) with the Visual Studio development environment. (RelWithDebInfo)",
-      "inherits": "x64-debug",
+      "name": "x64-release_global",
+      "hidden": true,
+      "inherits": "x64-debug_global",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     },
     {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
-      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Debug)",
+      "name": "x64-debug_global",
+      "hidden": true,
       "inherits": "windows-base",
       "architecture": {
         "value": "x64",
@@ -29,21 +25,40 @@
       "name": "windows-base",
       "description": "Target Windows with the Visual Studio development environment.",
       "hidden": true,
-      
-      //overwrite this in CMakeUserPresets.json, to use another vcpkg instance
-      "toolchainFile": "${sourceDir}/tools/vcpkg/scripts/buildsystems/vcpkg.cmake", 
-
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
-      "installDir": "${sourceDir}/out/install/${presetName}",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "cl.exe"
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "${sourceDir}/tools/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        },
+        "CMAKE_POLICY_VERSION_MINIMUM": "3.5",
+        "EIGEN3_INCLUDE_DIRS": "${sourceDir}/tools/vcpkg/installed/x64-windows/include/eigen3"
       },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
+        "condition": {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+        }
+    },
+    {
+        "name": "linux-base",
+        "generator": "Ninja",
+        "binaryDir": "${sourceDir}/out/build/${presetName}",
+        "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_TOOLCHAIN_FILE": {
+                "value": "${sourceDir}/tools/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "type": "FILEPATH"
+            }
+        },
+        "condition": {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Linux"
+        }
     }
   ]
 }

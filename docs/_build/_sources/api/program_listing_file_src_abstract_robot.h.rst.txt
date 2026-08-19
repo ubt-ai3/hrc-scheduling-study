@@ -1,0 +1,54 @@
+
+.. _program_listing_file_src_abstract_robot.h:
+
+Program Listing for File abstract_robot.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_src_abstract_robot.h>` (``src\abstract_robot.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   #include <chrono>
+   
+   #include <Eigen/Geometry>
+   
+   #include "vision.h"
+   #include "camera_realsense.h"
+   
+   namespace benchmark {
+   class abstract_robot
+   {
+     public:
+       virtual void pick(Entity e) final;
+       virtual void place(Entity e) final;
+       virtual std::vector<benchmark::Entity> explore() final;
+   
+       virtual void transfer(const Eigen::Vector3d &target) = 0;
+       virtual void transfer(const Eigen::Affine3d &target) = 0;
+   
+       virtual void move_without_object_down_or_up(const Eigen::Affine3d &target) = 0;
+       virtual void move_with_object_down(const Eigen::Affine3d &target, Entity::kind kind) = 0;
+   
+   
+       virtual int exploration_poses() = 0;
+       virtual void move_to_exploration_pose(int i) = 0;
+   
+       virtual void open_gripper(const Entity::kind kind) = 0;
+       virtual void close_gripper(const Entity::kind kind) = 0;
+   
+   
+       virtual Eigen::Affine3d tcp_T_entity(const Entity &entitiy) const = 0;
+       // transformation from camera coordinates to world coordinates.
+       virtual Eigen::Affine3d world_T_camera() const = 0;
+   
+   private:
+       Detection detection_ = Detection("./data/thresholds.realsense.json");
+       hardware::camera_realsense camera_;
+   
+       const double transfer_z = 0.3;
+   };
+   
+   }// namespace benchmark

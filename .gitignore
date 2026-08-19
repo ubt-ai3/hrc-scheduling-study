@@ -1,3 +1,8 @@
-CMakeUserPresets.json
 out/
 .vs/
+.vscode/
+docs/api
+CMakeUserPresets.json
+*.qmlproject.*
+.idea/
+/.vs.old

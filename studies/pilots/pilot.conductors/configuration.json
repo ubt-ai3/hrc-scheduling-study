@@ -1,0 +1,7 @@
+{
+    "human_actor_enabled": true,
+    "robot_actor_enabled": false,
+    "interruptions": [],
+    "reschedule_after_interrupt": false,
+    "task_description_path": "./benchmark_task/task_description.json"
+}

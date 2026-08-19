@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="classabstract__robot" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>abstract_robot</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classabstract__robot_1a45ebd3e06cd3e4391d34078f98e89244" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void abstract_robot::move_p2p</definition>
+        <argsstring>(const Eigen::Affine3d &amp;target)=0</argsstring>
+        <name>move_p2p</name>
+        <qualifiedname>abstract_robot::move_p2p</qualifiedname>
+        <param>
+          <type>const Eigen::Affine3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Move robot TCP to given pose. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is used as a primitive to construct approach, transfer and detach motions. <verbatim>embed:rst:leading-asterisk
+* .. image:: /images/Dominik.jpg
+*     :width: 400
+*     :alt: Dominik
+* </verbatim></para>
+<para>@ param[in] target: desired position of the robot tcp, in world coordinates </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="25" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1a8b8141b03053cf021cff30d85ceabf6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void abstract_robot::move_force</definition>
+        <argsstring>(const Eigen::Affine3d &amp;target)=0</argsstring>
+        <name>move_force</name>
+        <qualifiedname>abstract_robot::move_force</qualifiedname>
+        <param>
+          <type>const Eigen::Affine3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="28" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1a8eb41e62a257de8265945e758b814725" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void abstract_robot::grab</definition>
+        <argsstring>(const benchmark::Entity &amp;entity)=0</argsstring>
+        <name>grab</name>
+        <qualifiedname>abstract_robot::grab</qualifiedname>
+        <param>
+          <type>const benchmark::Entity &amp;</type>
+          <declname>entity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="34" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1a6e6b7f9fed1fc354471af24adc078843" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Eigen::Affine3d</type>
+        <definition>virtual Eigen::Affine3d abstract_robot::tcp_T_entity</definition>
+        <argsstring>(const benchmark::Entity &amp;entitiy) const =0</argsstring>
+        <name>tcp_T_entity</name>
+        <qualifiedname>abstract_robot::tcp_T_entity</qualifiedname>
+        <param>
+          <type>const benchmark::Entity &amp;</type>
+          <declname>entitiy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="36" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1afe83c1afc753b98977a7eafe9b8c8a2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void abstract_robot::set_percental_speed</definition>
+        <argsstring>(double new_speed)=0</argsstring>
+        <name>set_percental_speed</name>
+        <qualifiedname>abstract_robot::set_percental_speed</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>new_speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="39" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1a829f2f1ce07a3693b350c11fb64b0f36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double abstract_robot::get_percental_speed</definition>
+        <argsstring>() const =0</argsstring>
+        <name>get_percental_speed</name>
+        <qualifiedname>abstract_robot::get_percental_speed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="40" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classabstract__robot_1a36074c0c4f78a280bed2189fca421b2a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Eigen::Affine3d</type>
+        <definition>virtual Eigen::Affine3d abstract_robot::world_T_camera</definition>
+        <argsstring>() const =0</argsstring>
+        <name>world_T_camera</name>
+        <qualifiedname>abstract_robot::world_T_camera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="43" column="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="7" column="1" bodyfile="D:/huemmer/repos/experiments/src/abstract_robot.h" bodystart="8" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classabstract__robot_1a829f2f1ce07a3693b350c11fb64b0f36" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>get_percental_speed</name></member>
+      <member refid="classabstract__robot_1a8eb41e62a257de8265945e758b814725" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>grab</name></member>
+      <member refid="classabstract__robot_1a8b8141b03053cf021cff30d85ceabf6e" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>move_force</name></member>
+      <member refid="classabstract__robot_1a45ebd3e06cd3e4391d34078f98e89244" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>move_p2p</name></member>
+      <member refid="classabstract__robot_1afe83c1afc753b98977a7eafe9b8c8a2a" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>set_percental_speed</name></member>
+      <member refid="classabstract__robot_1a6e6b7f9fed1fc354471af24adc078843" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>tcp_T_entity</name></member>
+      <member refid="classabstract__robot_1a36074c0c4f78a280bed2189fca421b2a" prot="public" virt="pure-virtual"><scope>abstract_robot</scope><name>world_T_camera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

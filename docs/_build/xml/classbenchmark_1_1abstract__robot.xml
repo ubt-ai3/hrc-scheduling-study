@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="classbenchmark_1_1abstract__robot" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>benchmark::abstract_robot</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbenchmark_1_1abstract__robot_1a39c4d370c97bd0fda09bdca683010de9" prot="private" static="no" mutable="no">
+        <type>Detection</type>
+        <definition>Detection benchmark::abstract_robot::detection_</definition>
+        <argsstring></argsstring>
+        <name>detection_</name>
+        <qualifiedname>benchmark::abstract_robot::detection_</qualifiedname>
+        <initializer>= Detection(&quot;./data/thresholds.realsense.json&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="36" column="15" bodyfile="D:/huemmer/repos/experiments/src/abstract_robot.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbenchmark_1_1abstract__robot_1a4a5c57f5c77f8727bc485c4571959d8a" prot="private" static="no" mutable="no">
+        <type>hardware::camera_realsense</type>
+        <definition>hardware::camera_realsense benchmark::abstract_robot::camera_</definition>
+        <argsstring></argsstring>
+        <name>camera_</name>
+        <qualifiedname>benchmark::abstract_robot::camera_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="37" column="32" bodyfile="D:/huemmer/repos/experiments/src/abstract_robot.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbenchmark_1_1abstract__robot_1a887231437a8654ece8c36700cdf64605" prot="private" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double benchmark::abstract_robot::transfer_z</definition>
+        <argsstring></argsstring>
+        <name>transfer_z</name>
+        <qualifiedname>benchmark::abstract_robot::transfer_z</qualifiedname>
+        <initializer>= 0.3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="39" column="18" bodyfile="D:/huemmer/repos/experiments/src/abstract_robot.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1aadb4a221ccb356a1a077a5ad9d339d9b" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::pick</definition>
+        <argsstring>(Entity e) final</argsstring>
+        <name>pick</name>
+        <qualifiedname>benchmark::abstract_robot::pick</qualifiedname>
+        <param>
+          <type>Entity</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="13" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1abab61152ebb320b0be0249dfba440f88" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::place</definition>
+        <argsstring>(Entity e) final</argsstring>
+        <name>place</name>
+        <qualifiedname>benchmark::abstract_robot::place</qualifiedname>
+        <param>
+          <type>Entity</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="14" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1ae669b240f3cec4a511b72441dfa96438" prot="public" static="no" const="no" explicit="no" inline="no" final="yes" virt="virtual">
+        <type>std::vector&lt; benchmark::Entity &gt;</type>
+        <definition>virtual std::vector&lt; benchmark::Entity &gt; benchmark::abstract_robot::explore</definition>
+        <argsstring>() final</argsstring>
+        <name>explore</name>
+        <qualifiedname>benchmark::abstract_robot::explore</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="15" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a3f64ecafc31fea1023df0c53a60183dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::transfer</definition>
+        <argsstring>(const Eigen::Vector3d &amp;target)=0</argsstring>
+        <name>transfer</name>
+        <qualifiedname>benchmark::abstract_robot::transfer</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="17" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a8b8a3f6406cc5f4611136107f2bdbe1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::transfer</definition>
+        <argsstring>(const Eigen::Affine3d &amp;target)=0</argsstring>
+        <name>transfer</name>
+        <qualifiedname>benchmark::abstract_robot::transfer</qualifiedname>
+        <param>
+          <type>const Eigen::Affine3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="18" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a912edfb7d4e30b57a492a63189063055" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::move_without_object_down_or_up</definition>
+        <argsstring>(const Eigen::Affine3d &amp;target)=0</argsstring>
+        <name>move_without_object_down_or_up</name>
+        <qualifiedname>benchmark::abstract_robot::move_without_object_down_or_up</qualifiedname>
+        <param>
+          <type>const Eigen::Affine3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="20" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a375ac76438d1a81919fdf42ce1464297" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::move_with_object_down</definition>
+        <argsstring>(const Eigen::Affine3d &amp;target, Entity::kind kind)=0</argsstring>
+        <name>move_with_object_down</name>
+        <qualifiedname>benchmark::abstract_robot::move_with_object_down</qualifiedname>
+        <param>
+          <type>const Eigen::Affine3d &amp;</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>Entity::kind</type>
+          <declname>kind</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="21" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a54ad9a915be3077745f5072f081a9956" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int benchmark::abstract_robot::exploration_poses</definition>
+        <argsstring>()=0</argsstring>
+        <name>exploration_poses</name>
+        <qualifiedname>benchmark::abstract_robot::exploration_poses</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="24" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1ab55978566a9a2401066dc084090d5bd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::move_to_exploration_pose</definition>
+        <argsstring>(int i)=0</argsstring>
+        <name>move_to_exploration_pose</name>
+        <qualifiedname>benchmark::abstract_robot::move_to_exploration_pose</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="25" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a1022493025e94ca8a32e8772313fb234" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::open_gripper</definition>
+        <argsstring>(const Entity::kind kind)=0</argsstring>
+        <name>open_gripper</name>
+        <qualifiedname>benchmark::abstract_robot::open_gripper</qualifiedname>
+        <param>
+          <type>const Entity::kind</type>
+          <declname>kind</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="27" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a59b023f76bb7e1bbf8fb3eceb0cc28a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void benchmark::abstract_robot::close_gripper</definition>
+        <argsstring>(const Entity::kind kind)=0</argsstring>
+        <name>close_gripper</name>
+        <qualifiedname>benchmark::abstract_robot::close_gripper</qualifiedname>
+        <param>
+          <type>const Entity::kind</type>
+          <declname>kind</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="28" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1a75de1b5204ccd3bd2239cdb4308e514a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Eigen::Affine3d</type>
+        <definition>virtual Eigen::Affine3d benchmark::abstract_robot::tcp_T_entity</definition>
+        <argsstring>(const Entity &amp;entitiy) const =0</argsstring>
+        <name>tcp_T_entity</name>
+        <qualifiedname>benchmark::abstract_robot::tcp_T_entity</qualifiedname>
+        <param>
+          <type>const Entity &amp;</type>
+          <declname>entitiy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="31" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classbenchmark_1_1abstract__robot_1ae46ee3a32664c0b9ac4ceb06ef8af82d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Eigen::Affine3d</type>
+        <definition>virtual Eigen::Affine3d benchmark::abstract_robot::world_T_camera</definition>
+        <argsstring>() const =0</argsstring>
+        <name>world_T_camera</name>
+        <qualifiedname>benchmark::abstract_robot::world_T_camera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="33" column="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="10" column="1" bodyfile="D:/huemmer/repos/experiments/src/abstract_robot.h" bodystart="11" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classbenchmark_1_1abstract__robot_1a4a5c57f5c77f8727bc485c4571959d8a" prot="private" virt="non-virtual"><scope>benchmark::abstract_robot</scope><name>camera_</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a59b023f76bb7e1bbf8fb3eceb0cc28a9" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>close_gripper</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a39c4d370c97bd0fda09bdca683010de9" prot="private" virt="non-virtual"><scope>benchmark::abstract_robot</scope><name>detection_</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a54ad9a915be3077745f5072f081a9956" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>exploration_poses</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1ae669b240f3cec4a511b72441dfa96438" prot="public" virt="virtual"><scope>benchmark::abstract_robot</scope><name>explore</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1ab55978566a9a2401066dc084090d5bd0" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>move_to_exploration_pose</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a375ac76438d1a81919fdf42ce1464297" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>move_with_object_down</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a912edfb7d4e30b57a492a63189063055" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>move_without_object_down_or_up</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a1022493025e94ca8a32e8772313fb234" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>open_gripper</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1aadb4a221ccb356a1a077a5ad9d339d9b" prot="public" virt="virtual"><scope>benchmark::abstract_robot</scope><name>pick</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1abab61152ebb320b0be0249dfba440f88" prot="public" virt="virtual"><scope>benchmark::abstract_robot</scope><name>place</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a75de1b5204ccd3bd2239cdb4308e514a" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>tcp_T_entity</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a3f64ecafc31fea1023df0c53a60183dc" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>transfer</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a8b8a3f6406cc5f4611136107f2bdbe1b" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>transfer</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1a887231437a8654ece8c36700cdf64605" prot="private" virt="non-virtual"><scope>benchmark::abstract_robot</scope><name>transfer_z</name></member>
+      <member refid="classbenchmark_1_1abstract__robot_1ae46ee3a32664c0b9ac4ceb06ef8af82d" prot="public" virt="pure-virtual"><scope>benchmark::abstract_robot</scope><name>world_T_camera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

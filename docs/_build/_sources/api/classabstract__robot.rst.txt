@@ -1,0 +1,17 @@
+.. _exhale_class_classabstract__robot:
+
+Class abstract_robot
+====================
+
+- Defined in :ref:`file_src_abstract_robot.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: abstract_robot
+   :project: My Project
+   :members:
+   :protected-members:
+   :undoc-members:

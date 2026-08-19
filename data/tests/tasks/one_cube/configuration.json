@@ -1,0 +1,6 @@
+{
+    "human_actor_enabled": false,
+    "robot_actor_enabled": true,
+    "interruptions": [],
+    "task_description_path": "./task_description.json"
+}

@@ -1,0 +1,5 @@
+gears-BasePlate: 5
+gears-GearGreen: 2
+gears-GearOrange: 1
+gears-GearBlue: 2
+general-cornerMarker: 1

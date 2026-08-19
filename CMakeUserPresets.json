@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "environment",
+      "hidden": true,
+      "description": "Specify machine dependent environment settings",
+      "cacheVariables": {
+        "SphinxPath": ""
+      },
+        "environment": {
+            "CMAKE_PREFIX_PATH": "C:/Qt/6.11.1/msvc2022_64"
+        }
+    },
+    {
+      "name": "x64-release",
+      "displayName": "x64 Release",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (RelWithDebInfo)",
+      "inherits": [
+        "x64-release_global",
+        "environment"
+      ]
+    },
+    {
+      "name": "x64-debug",
+      "displayName": "x64 Debug",
+      "description": "Target Windows (64-bit) with the Visual Studio development environment. (Debug)",
+      "inherits": [
+        "x64-debug_global",
+        "environment"
+      ]
+    }
+  ]
+}

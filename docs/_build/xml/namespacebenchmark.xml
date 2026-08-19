@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="namespacebenchmark" kind="namespace" language="C++">
+    <compoundname>benchmark</compoundname>
+    <innerclass refid="classbenchmark_1_1abstract__robot" prot="public">benchmark::abstract_robot</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/huemmer/repos/experiments/src/abstract_robot.h" line="9" column="1"/>
+  </compounddef>
+</doxygen>

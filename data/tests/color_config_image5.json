@@ -1,0 +1,8 @@
+{
+    "hsv_blue_lo": [105, 200, 30],
+    "hsv_blue_hi": [120, 255, 255],
+    "hsv_orange_lo": [5, 166, 115],
+    "hsv_orange_hi": [15, 255, 255],
+    "hsv_green_lo": [60, 80, 53],
+    "hsv_green_hi": [90, 255, 255]
+}

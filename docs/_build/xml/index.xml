@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.4" xml:lang="en-US">
+  <compound refid="classbenchmark_1_1abstract__robot" kind="class"><name>benchmark::abstract_robot</name>
+    <member refid="classbenchmark_1_1abstract__robot_1a39c4d370c97bd0fda09bdca683010de9" kind="variable"><name>detection_</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a4a5c57f5c77f8727bc485c4571959d8a" kind="variable"><name>camera_</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a887231437a8654ece8c36700cdf64605" kind="variable"><name>transfer_z</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1aadb4a221ccb356a1a077a5ad9d339d9b" kind="function"><name>pick</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1abab61152ebb320b0be0249dfba440f88" kind="function"><name>place</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1ae669b240f3cec4a511b72441dfa96438" kind="function"><name>explore</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a3f64ecafc31fea1023df0c53a60183dc" kind="function"><name>transfer</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a8b8a3f6406cc5f4611136107f2bdbe1b" kind="function"><name>transfer</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a912edfb7d4e30b57a492a63189063055" kind="function"><name>move_without_object_down_or_up</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a375ac76438d1a81919fdf42ce1464297" kind="function"><name>move_with_object_down</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a54ad9a915be3077745f5072f081a9956" kind="function"><name>exploration_poses</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1ab55978566a9a2401066dc084090d5bd0" kind="function"><name>move_to_exploration_pose</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a1022493025e94ca8a32e8772313fb234" kind="function"><name>open_gripper</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a59b023f76bb7e1bbf8fb3eceb0cc28a9" kind="function"><name>close_gripper</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1a75de1b5204ccd3bd2239cdb4308e514a" kind="function"><name>tcp_T_entity</name></member>
+    <member refid="classbenchmark_1_1abstract__robot_1ae46ee3a32664c0b9ac4ceb06ef8af82d" kind="function"><name>world_T_camera</name></member>
+  </compound>
+  <compound refid="namespacebenchmark" kind="namespace"><name>benchmark</name>
+  </compound>
+  <compound refid="abstract__robot_8h" kind="file"><name>abstract_robot.h</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>D:/huemmer/repos/experiments/src</name>
+  </compound>
+</doxygenindex>

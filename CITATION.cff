@@ -1,0 +1,59 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Comparing Static and Dynamic Human-Robot Task Sharing -
+  Experiment Software
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jonathan
+    family-names: Hümmer
+    email: jonathan.huemmer@uni-bayreuth.de
+    affiliation: University of Bayreuth
+    orcid: 'https://orcid.org/0009-0002-4153-5493'
+  - given-names: Nico
+    family-names: Höllerich
+    email: nico.hoellerich@uni-bayreuth.de
+    affiliation: University of Bayreuth
+    orcid: 'https://orcid.org/0000-0003-2612-483X'
+  - given-names: Dominik
+    family-names: Riedelbauch
+    email: dominik.riedelbauch@outlook.com
+    orcid: 'https://orcid.org/0000-0002-7937-4755'
+  - given-names: Dominik
+    family-names: Henrich
+    email: dominik.henrich@uni-bayreuth.de
+    affiliation: University of Bayreuth
+    orcid: 'https://orcid.org/0000-0003-0250-2728'
+repository-code: 'https://www.github.com/ubt-ai3/hrc-scheduling-study'
+abstract: >-
+  In human-robot collaboration (HRC), task scheduling
+  determines how assembly steps are assigned to agents.
+  These schedules can be static, generated prior to
+  execution, or dynamic, adapting to events in real-time.
+  Despite the proliferation of novel scheduling algorithms,
+  the robotics field lacks standardized, reproducible
+  methods for evaluating how human collaborators experience
+  these competing policies. Existing user studies suffer
+  from heterogeneous hardware setups, proprietary software
+  stacks, and unshared study materials. 
+
+  We address this reproducibility gap by introducing a
+  complete, open-source platform designed for HRC scheduling
+  experiments. The provided artifact includes the hardware
+  setup, graphical user interface, study documents, and a
+  modular software architecture with a dedicated scheduler
+  interface to test custom algorithms.
+
+  Utilizing this platform, we conducted a within-subjects
+  user study (n = 22) to compare static and dynamic task
+  sharing during an assembly scenario with experimentally
+  induced human absences. Our results demonstrate that
+  dynamic scheduling significantly reduces the user's
+  perceived workload and increases perceived team fluency,
+  without raising mental demand.
+license: MIT
