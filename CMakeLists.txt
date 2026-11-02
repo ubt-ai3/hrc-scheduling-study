@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.21)
+# The version range enables the CMP0144 (<PACKAGE>_ROOT) and CMP0167 (no FindBoost)
+# policies as NEW on CMake >= 3.30, which the vcpkg find_package wrappers need.
+cmake_minimum_required(VERSION 3.21...3.30)
 message("Toolchain: ${CMAKE_TOOLCHAIN_FILE}")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -10,9 +12,6 @@ project(experiment
 
 
 # Dependencies
-if(POLICY CMP0167)
-    cmake_policy(SET CMP0167 NEW)
-endif()
 find_package(Boost REQUIRED COMPONENTS serialization)
 find_package(Eigen3 CONFIG REQUIRED)
 find_package(PCL CONFIG REQUIRED)

@@ -64,8 +64,7 @@ int main(int argc, char *argv[])
         PyStatus status = PyConfig_SetBytesString(&py_config, &py_config.home, HRC_PYTHON_HOME);
         if (PyStatus_Exception(status)) {
             PyConfig_Clear(&py_config);
-            std::cout << "Could not set Python home: " << HRC_PYTHON_HOME << "
-";
+            std::cout << "Could not set Python home: " << HRC_PYTHON_HOME << '\n';
             return 1;
         }
     }

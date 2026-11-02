@@ -143,6 +143,25 @@ Cause: the embedded interpreter derives its prefix (and thus `site-packages`) fr
 
 Fix: the application sets the Python home to the directory of the `Python_EXECUTABLE` found by CMake (compile definition `HRC_PYTHON_HOME`). Re-run the CMake configure and rebuild after changing the Python installation. A `PYTHONHOME` environment variable still takes precedence if set.
 
+### `ninja: error: failed recompaction: Permission denied`
+
+Symptom: the build stops during "Re-running CMake" with `ninja: error: failed recompaction: Permission denied` and `Configuring incomplete`.
+
+Cause: ninja's state files in `out/build/<preset>` are held open by another build of the same preset, for example one started from the IDE.
+
+Fix: wait for the other build to finish (or stop it) and run the build again.
+
+### Expected warnings
+
+These warnings appear during configure and do not indicate a problem:
+
+- `The detected C++ compiler (MSVC) is unsupported for correct builds under cross-compilation` (printed several times): raised by the vcpkg VTK package, which this project does not cross-compile.
+- `Could NOT find WrapVulkanHeaders` and `Could NOT find Qt6TaskTree`, followed by a warning that `Qt6QmlAssetDownloaderPrivate` is considered not found: optional Qt components that the application does not use.
+- `Compatibility with CMake < 3.10 will be removed from a future version of CMake` for `_libfranka-src/CMakeLists.txt` and `_libfranka-src/common/CMakeLists.txt`: libfranka is fetched at build time and declares an old minimum CMake version. The preset passes `CMAKE_POLICY_VERSION_MINIMUM=3.5` so that it still configures.
+- `find_package(unofficial-utf8proc) is deprecated`: raised by the vcpkg Poco package, a dependency of libfranka.
+- `The core target is a QML module with target path Core ... OUTPUT_DIRECTORY ... should end in the same target path`: affects only `qmllint` tooling, which this project does not use.
+- `fatal: not a git repository ... Had to git clone more than once: 2 times` while fetching libfranka: a transient clone failure that CMake retries automatically. It is more likely on slow drives.
+
 ## Hardware configuration
 
 ### TCP offset
