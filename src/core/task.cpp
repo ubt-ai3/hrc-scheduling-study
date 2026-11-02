@@ -86,6 +86,9 @@ void task::reset()
     }
     set_operations(new_ops);
 
+    // show the taught part positions as soon as the task is loaded, not only after start
+    exploration_loaded_ = load_exploration();
+
     spdlog::info("Reseting task");
     reschedule();
 
@@ -158,7 +161,7 @@ void task::start()
     state = TaskState::Running;
     emit stateChanged();
 
-    if (!load_exploration()) {
+    if (!exploration_loaded_) {
         spdlog::info("Starting exploration");
         robot_->start_exporation([this]() {
             try {

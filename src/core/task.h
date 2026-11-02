@@ -106,6 +106,7 @@ class task : public QObject
     QVector<Operation *> operations_;
 
     bool load_exploration();
+    bool exploration_loaded_ = false;
     std::map<Operation *, std::pair<benchmark::Entity, benchmark::Entity>> worldPose_from_op_;
 
 
