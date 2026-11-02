@@ -133,6 +133,16 @@ cd out/build/<preset> && ctest
 ### Other
 For development you can switch to a simulated robot by changing the connect_to_hardware property of the task in App/Experiment.qml
 
+## Troubleshooting
+
+### `ModuleNotFoundError: No module named 'networkx'` on start-up
+
+Symptom: `application.exe` prints `Could not find platform independent libraries <prefix>` followed by `ModuleNotFoundError: No module named 'networkx'`, although `networkx` is installed for the Python found by CMake.
+
+Cause: the embedded interpreter derives its prefix (and thus `site-packages`) from the location of the executable, and `application.exe` has no `Lib/` folder next to it. Without a prefix, `site-packages` is not added to `sys.path`. Launching from an IDE hid this on machines whose `CMakeUserPresets.json` set `PYTHONHOME` in its `environment` block, because the IDE passes that variable to the started program. Starting the exe from a plain shell or by double-click does not.
+
+Fix: the application sets the Python home to the directory of the `Python_EXECUTABLE` found by CMake (compile definition `HRC_PYTHON_HOME`). Re-run the CMake configure and rebuild after changing the Python installation. A `PYTHONHOME` environment variable still takes precedence if set.
+
 ## Hardware configuration
 
 ### TCP offset

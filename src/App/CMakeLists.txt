@@ -41,6 +41,10 @@ target_link_libraries(application PRIVATE
 	Qt6::Quick3D
 )
 
+# Python install used for the embedded interpreter (its Lib and site-packages)
+get_filename_component(HRC_PYTHON_HOME "${Python_EXECUTABLE}" DIRECTORY)
+target_compile_definitions(application PRIVATE HRC_PYTHON_HOME="${HRC_PYTHON_HOME}")
+
 if (MSVC)
 	add_custom_command( #to copy python dlls.
     	  TARGET application POST_BUILD

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include <thread>
+#include <cstdlib>
 
 
 #include <QApplication>
@@ -53,7 +54,23 @@ int main(int argc, char *argv[])
     spdlog::set_level(spdlog::level::trace);
 
 
-    pybind11::initialize_interpreter();
+    // The exe has no Lib/ folder next to it, so Python cannot derive its prefix
+    // (and thus site-packages). Point it at the install found by CMake unless
+    // the user overrides it through PYTHONHOME.
+    PyConfig py_config;
+    PyConfig_InitPythonConfig(&py_config);
+    py_config.parse_argv = 0;
+    if (!std::getenv("PYTHONHOME")) {
+        PyStatus status = PyConfig_SetBytesString(&py_config, &py_config.home, HRC_PYTHON_HOME);
+        if (PyStatus_Exception(status)) {
+            PyConfig_Clear(&py_config);
+            std::cout << "Could not set Python home: " << HRC_PYTHON_HOME << "
+";
+            return 1;
+        }
+    }
+    pybind11::initialize_interpreter(&py_config);
+    PyConfig_Clear(&py_config);
     try {
         pybind11::exec(R"(
         import networkx
