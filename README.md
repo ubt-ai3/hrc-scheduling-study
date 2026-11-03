@@ -1,5 +1,17 @@
 # Comparing Static and Dynamic Human-Robot Task Sharing - Experiment Software
 
+This C++17/Qt 6 application runs human-robot task-sharing experiments with a Franka Emika Panda robot and an Intel RealSense camera. It coordinates assembly steps under static and dynamic scheduling policies, triggers human interruptions, presents questionnaires, and records session data as JSONL. The build uses CMake and vcpkg and was tested on Windows 11 and Ubuntu 24.
+
+## Contents
+
+- [Getting started](#getting-started): dependencies, Python integration, and builds on Windows and Linux.
+- [Troubleshooting](#troubleshooting): QML deployment, Python startup, and build diagnostics.
+- [Hardware configuration](#hardware-configuration): gripper geometry, tool mass, and camera poses.
+- [Running a study session](#running-a-study-session): user interface, task loading, questionnaires, camera navigation, and simulation.
+- [Questionnaire strings](#questionnaire-strings): files to edit when adapting questionnaire language.
+- [Operation timing for scheduling](#operation-timing-for-scheduling): human and robot step durations and interruption duration.
+- [Related materials and citation](#related-materials-and-citation): analysis data, protocols, study materials, and publication details.
+
 ## Getting started
 
 ### Windows
@@ -13,9 +25,10 @@ Checkout this project and submodules, then install vcpkg dependencies using:
   .\bootstrap-vcpkg.bat
   .\vcpkg.exe install boost-serialization catch2 poco[net] eigen3 nlohmann-json opencv realsense2 pcl[vtk] spdlog --triplet x64-windows
 ```
-Note: right now, poco is only necessary to build libfranka.
+Poco is needed to build libfranka.
+
 #### Qt
-As of now, we don't recommend building Qt with vcpkg. Instead, download their prebuild binaries and add the location of your Qt installation to the "CMAKE_PREFIX_PATH" in the file CMakeUserPresets.json.
+[Download](https://www.qt.io/development/download-qt-installer-oss) and install the community version of Qt 6 using the online installer. It ships with prebuilt MSVC binaries. We opted against building it through vcpkg due to path resolution errors. Set `CMAKE_PREFIX_PATH` in `CMakeUserPresets.json` to the installation directory, for example `C:/Qt/6.8.2/msvc2022_64`.
 
 The following Qt components must be installed (select them in the Qt Online Installer):
 - Qt Core
@@ -48,7 +61,7 @@ Our vcpkg dependencies have themselves dependencies on the distribution's packag
   sudo apt-get install flex
     sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev libegl1-mesa-dev
 ```
-Aferwards, you can install the dependencies as usual:
+Afterwards, you can install the dependencies as usual:
 ```shell
   cd ./tools/vcpkg
   sudo ./bootstrap-vcpkg.sh
@@ -59,9 +72,17 @@ Aferwards, you can install the dependencies as usual:
 1. Install Python 3.11+ and ensure it is on your system `PATH`. Required packages: `networkx`, `matplotlib`. Make sure you downloaded the debug binaries during install.
 2. CMake's `FindPython` will locate Python automatically via `PATH` and the Windows registry. If you need to pin a specific installation, set `Python_ROOT_DIR` as a system environment variable pointing to that directory.
 
-Hint: If you encounter issues, check the CMake output to see which Python version is found and used.
+Install the Python packages into the interpreter selected by CMake:
+
+```cmd
+python -m pip install networkx matplotlib
+```
+
+If you encounter issues, check the CMake output to see which Python version is found and used. `PYTHONHOME` is an optional runtime override; see the Python startup guidance under [Troubleshooting](#troubleshooting).
 
 ### Building
+
+Run configure and build commands from the repository root. CMake copies `data/` into `out/build/<preset>/` during configuration. Use that build directory as the working directory when launching the application.
 
 #### Option A — Command line
 
@@ -75,7 +96,8 @@ cmake --build out/build/x64-debug
 Use `x64-release` for a `RelWithDebInfo` build. Run the result:
 
 ```cmd
-out\build\x64-debug\src\App\application.exe
+cd out\build\x64-debug
+src\App\application.exe
 ```
 
 **Linux** — first add a Linux preset to `CMakeUserPresets.json` (the file is not committed; create it if it does not exist):
@@ -103,7 +125,8 @@ Then configure, build, and run:
 ```bash
 cmake --preset linux-debug
 cmake --build out/build/linux-debug
-out/build/linux-debug/src/App/application
+cd out/build/linux-debug
+./src/App/application
 ```
 
 **Tests (both platforms):**
@@ -130,10 +153,27 @@ cd out/build/<preset> && ctest
 4. Click **Build** (hammer icon) or press **Ctrl+B**.
 5. To run, select the `application` target in the kit selector and press **Ctrl+R**.
 
-### Other
-For development you can switch to a simulated robot by changing the connect_to_hardware property of the task in App/Experiment.qml
-
 ## Troubleshooting
+
+### QML modules fail to load at startup (Windows)
+
+The application's own QML modules (`App`, `Components`, `HrcModels`, `Mock`, and `Core`) are built with `qt_add_qml_module`. The UI resources are embedded under `/qt/qml`; `src/App/main.cpp` adds `qrc:/qt/qml` to the import path and loads `qrc:/qt/qml/App/main.qml`. These modules do not require a filesystem import-path override.
+
+Qt's own QML modules, including Qt Quick Controls and Qt Quick 3D, must also be available from the matching Qt installation or deployed beside the executable. On MSVC builds, `src/App/CMakeLists.txt` copies target runtime DLLs and runs `Qt6::windeployqt` after linking. That command does not pass `--qmldir`, so it does not explicitly scan the application's QML sources for imports.
+
+If startup reports a missing Qt QML module:
+
+1. Check `Qt6_DIR` in the build directory's `CMakeCache.txt` to identify the Qt installation selected by CMake. Use its deployment tool and modules, matching the build's compiler, architecture, and configuration.
+2. From the repository root, run the matching deployment tool with a QML source scan. In a Developer Command Prompt, for example:
+
+   ```cmd
+   "C:\Qt\6.8.2\msvc2022_64\bin\windeployqt.exe" --release --qmldir src\App out\build\x64-release\src\App\application.exe
+   ```
+
+   Replace the Qt path and executable path with those used by your build. For `x64-debug`, use `--debug` and the debug executable. See [Qt's Windows deployment documentation](https://doc.qt.io/qt-6/windows-deployment.html) for the QML scanning options.
+3. If loading still fails, inspect the application's `QML Import Paths:` output. For a detailed trace, set `QML_IMPORT_TRACE=1` in the launching shell before starting the application. Close that shell after diagnosis.
+
+Do not set a system-wide `QML2_IMPORT_PATH` pointing into vcpkg when using the separately installed Windows Qt binaries. Check existing `QML_IMPORT_PATH` and `QML2_IMPORT_PATH` overrides for paths to another Qt installation. If a development launch needs an explicit import path, set `QML_IMPORT_PATH` only in that launching shell to the selected Qt installation's `qml` directory. This supplies a search path; it does not install missing modules or resolve incompatible plugin binaries. Qt documents the search paths and tracing in [QML Import Path](https://doc.qt.io/qt-6.8/qtqml-syntax-imports.html#qml-import-path).
 
 ### `ModuleNotFoundError: No module named 'networkx'` on start-up
 
@@ -182,16 +222,20 @@ Two sets of poses in `src/franka_robot.cpp` are workspace-specific and must be v
 
 ## Running a study session
 
+![User interface of the experiment application](docs/images/software_screenshot.png)
+
+The interface displays the assembly scene, the assigned operations, and the participant's task controls. Use the session protocol linked under [Related materials and citation](#related-materials-and-citation) for the sequence of participant and experimenter actions.
+
 ### Loading a task
 There are two ways to point the application at a task:
 
 **Option A — configuration file (recommended for study runs).**
-Use *File → Open* and select a `configuration.json` file (e.g. `studies/JHu_MA/TaskA/configuration_dynamic.json`). The file specifies the task description path, which actors are enabled (human / robot), which operation indices trigger an interruption, and whether the scheduler re-plans after an interruption. All settings are applied at once.
+Use *File → Open* and select a configuration file. The main-study configurations are `studies/main/configuration_dynamic.json` and `studies/main/configuration_static.json` in the repository. The file specifies the task description path, which actors are enabled (human / robot), which operation indices trigger an interruption, and whether the scheduler re-plans after an interruption. All settings are applied at once.
 
 **Option B — manual settings.**
-Use *Tools → Options* to set the task description path and override individual scheduling parameters. This is useful for quick tests without a full configuration file.
+Use *Tools → Options* to set the task description path, enable or disable the human and robot actors, choose the assembly step indices that trigger interruptions (for example `[2,4]`), and enable or disable rescheduling after an interruption. This is useful for quick tests without a full configuration file.
 
-> **Important:** always load a task before pressing *Start*. Starting without a loaded task description causes the application to crash.
+> Load a task before pressing *Start*. Starting without a loaded task description causes the application to crash.
 
 ### Running the experiment
 1. Start the application from the build output directory (`out/build/<preset>/`).
@@ -199,11 +243,15 @@ Use *Tools → Options* to set the task description path and override individual
 3. Press **Start**. The robot begins its exploration sequence to locate parts.
 4. Once the task is running, the button label changes to **Assembly step completed**. The participant presses this after each completed human assembly step.
 5. An interruption dialog appears automatically at the configured operation indices. After the secondary task, the participant presses **I am back** to resume.
-6. Questionnaires (NASA-TLX, SUS, Fluency, Demographics, Experience) are accessible under the *Tools* menu and can be filled in between runs.
-7. Study data is logged automatically as JSONL in the working directory.
+6. Questionnaires (NASA-TLX, SUS, fluency under *Perfomance and Interaction Quality*, ATI, Demographics, Experience) are accessible under the *Tools* menu and can be filled in between runs.
+7. Study data is logged automatically as timestamped JSONL files in the `logs/` subdirectory of the working directory.
+
+### 3D scene camera navigation
+
+Use **W**, **A**, **S**, and **D** to navigate the 3D scene camera. To change its initial position and viewing direction, edit the camera values in `src/App/Scene.qml` and rebuild the application.
 
 ### Simulation mode
-Set `connect_to_hardware: false` on the `Task` element in `src/App/Experiment.qml` to run without physical hardware. The software will simulate robot actions and camera observations, which is useful for testing scheduling logic.
+Set `connect_to_hardware: false` on the `Task` element in `src/App/Experiment.qml` and rebuild the application to run without physical hardware. The software will simulate robot actions and camera observations, which is useful for testing scheduling logic.
 
 ## Questionnaire strings
 
@@ -234,3 +282,21 @@ const int interrupt_duration = 30;
 - `interrupt_duration` — number of time steps the human is marked unavailable when scheduling around an interruption.
 
 To change how long human or robot steps are assumed to take (and thus how the scheduler interleaves operations), edit these three constants directly.
+## Related materials and citation
+
+### Related materials
+
+| Material | Access |
+|---|---|
+| Data and analysis capsule | [Code Ocean](https://doi.org/10.24433/CO.1115223.v1) |
+| Study protocol | [protocols.io](https://doi.org/10.17504/protocols.io.dm6gp4z1pgzp/v1) |
+| Session protocol | [protocols.io](https://doi.org/10.17504/protocols.io.261geq51jg47/v1) |
+| Printable study materials | [prints/](prints/): participant information, consent forms, experimenter checklists, and workspace reference sheets |
+| Supplemental material | Link to be added with the publication; covers workstation setup, calibration, data interpretation, and replication evaluation. |
+| Video walkthrough | Link to be added. |
+
+### Main publication
+
+Jonathan Hümmer, Nico Höllerich, Dominik Riedelbauch, and Dominik Henrich. *Comparing Static and Dynamic Human-Robot Task Sharing - A Reproducible User Study.*
+
+Publication link, DOI, year, volume, and pages: to be added when assigned. Cite the main article when reporting use of the study platform or protocol; use [CITATION.cff](CITATION.cff) for the software citation.
