@@ -6,3 +6,6 @@ CMakeUserPresets.json
 *.qmlproject.*
 .idea/
 /.vs.old
+
+# Generated documentation build output
+docs/_build/
