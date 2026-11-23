@@ -123,9 +123,6 @@ void realsense_pcl_grabber::init_pipe()
         framerate_);
     config.enable_stream(
         RS2_STREAM_DEPTH, depth_resolution_.x(), depth_resolution_.y(), RS2_FORMAT_ANY, framerate_);
-    // config.enable_record_to_file("C:/Users/huemmer/OneDrive - Universit�t
-    // Bayreuth/BA/Projektverzeichnis/05.Rohdaten/Realsense.Viewer.Aufnahmen/cubes.pin.1.bag");
-    //config.enable_device_from_file("C:/Users/huemmer/OneDrive - Universit�t Bayreuth/uni/MSc_Projekt_Jonathan_Huemmer/05.Rohdaten/realsense recordings/demo_scene.bag");
 
     if (serial_number_.empty()) {
         auto profile = pipe_.start(config);
